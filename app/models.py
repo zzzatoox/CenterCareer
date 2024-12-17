@@ -172,8 +172,8 @@ class Event(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     event_date = models.DateField(verbose_name="Дата мероприятия")
-    start_time = models.TimeField(blank=True, null=True, verbose_name="Время начала")
-    end_time = models.TimeField(blank=True, null=True, verbose_name="Время окончания")
+    start_time = models.TimeField(verbose_name="Время начала")
+    end_time = models.TimeField(verbose_name="Время окончания")
     location = models.ForeignKey(
         Location,
         on_delete=models.CASCADE,
