@@ -1,0 +1,257 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load humanize %}
+
+{% block title %}Вакансии{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/vacancies.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="vacancies py-3 py-sm-5">
+    <div class="container">
+        <div class="row">
+            <div class="d-flex flex-column">
+                <h1 class="display-4">Вакансии</h1>
+                <form method="get" class="input-group mt-3" id="searchForm">
+                    <input type="text" class="form-control vacancies-input" id="searchInput" name="search"
+                        placeholder="Введите желаемую должность, практику или стажировку" list="jobsOptions" value="{% if search %}{{ search }}{% endif %}">
+                    <datalist id="jobsOptions">
+                        {% for title in unique_titles %}
+                        <option value="{{ title }}">
+                        {% endfor %}
+                    </datalist>
+                    <button type="submit" class="btn btn-primary">Найти</button>
+                </form>
+            </div>
+        </div>
+        <div class="row my-2">
+            <p class="subheading text-end">{{ vacancies.paginator.count }} вакансий</p>
+        </div>
+        <div class="selected-filters text-center mb-3">
+            <!-- {% if city %}
+            <span class="badge bg-info">Город: {{ city }}</span>
+            {% endif %}
+            {% if organisation %}
+            <span class="badge bg-info">Организация: {{ organisation }}</span>
+            {% endif %} -->
+            {% if invalids %}
+            <span class="badge bg-info">Подходит для инвалидов</span>
+            {% endif %}
+            {% if experience %}
+            <span class="badge bg-info">Опыт работы: {{ experience|join:", " }}</span>
+            {% endif %}
+            {% if type_of_employment %}
+            <span class="badge bg-info">Тип занятости: {{ type_of_employment|join:", " }}</span>
+            {% endif %}
+            {% if schedule %}
+            <span class="badge bg-info">Режим работы: {{ schedule|join:", " }}</span>
+            {% endif %}
+            {% if salary_from %}
+            <span class="badge bg-info">Зарплата от: {{ salary_from|intcomma }}</span>
+            {% endif %}
+            {% if salary_to %}
+            <span class="badge bg-info">Зарплата до: {{ salary_to|intcomma }}</span>
+            {% endif %}
+            {% if income_stated %}
+            <span class="badge bg-info">Указан доход</span>
+            {% endif %}
+        </div>
+
+        <!-- Кнопка для сворачивания фильтров -->
+        <div class="d-md-none mb-3">
+            <button class="btn btn-primary w-100" style="box-shadow: none;" type="button" data-bs-toggle="collapse" data-bs-target="#filtersCollapse" aria-expanded="false" aria-controls="filtersCollapse">
+                Фильтры
+            </button>
+        </div>
+
+        <div class="row g-3">
+            <!-- filters -->
+            <div class="col-md-4 sidebar">
+                <div class="filters p-3 collapse d-md-block" id="filtersCollapse">
+                    <form method="get" id="filterForm">
+                        {% comment %}
+                        <!-- City Filter -->
+                        <!-- <div class="filter">
+                            <label for="city" class="filter-title">Город</label>
+                            <input type="text" id="city" name="city" class="form-control filter-input"
+                                placeholder="Введите название города" list="cityDropdown" value="{% if city %}{{ city }}{% endif %}">
+                            <datalist id="cityDropdown">
+                                {% for city in cities %}
+                                <option value="{{ city.title }}">
+                                {% endfor %}
+                            </datalist>
+                        </div> -->
+                        {% endcomment %}
+
+                        {% comment %}
+                        <!-- Organisation Filter -->
+                        <!-- <div class="filter">
+                            <label for="organisation" class="filter-title">Организация</label>
+                            <input type="text" id="organisation" name="organisation" class="form-control filter-input"
+                                placeholder="Введите название организации" list="organisationDropdown" value="{% if organisation %}{{ organisation }}{% endif %}">
+                            <datalist id="organisationDropdown">
+                                {% for org in organisations %}
+                                <option value="{{ org.title }}">
+                                {% endfor %}
+                            </datalist>
+                        </div> -->
+                        {% endcomment %}
+                        
+                        <!-- Checkbox Experience Filter -->
+                        <div class="filter">
+                            <label class="filter-title">Опыт работы</label>
+                            {% for exp in experiences %}
+                            <div class="form-check">
+                                <!-- ruff: noqa -->
+                                <input type="checkbox" class="form-check-input" id="expCheck{{ exp.filter_value_id }}"
+                                name="experience" value="{{ exp.value }}" {% if exp.value in experience %}checked{% endif %}>
+                                <label for="expCheck{{ exp.filter_value_id }}" class="form-check-label">
+                                    {{exp.value}}</label>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Checkbox Type of Employment Filter -->
+                        <div class="filter">
+                            <label class="filter-title">Тип занятости</label>
+                            {% for type in type_of_employments %}
+                            <div class="form-check">
+                                <!-- ruff: noqa -->
+                                <input type="checkbox" class="form-check-input" id="typeCheck{{ type.filter_value_id }}"
+                                name="type_of_employment" value="{{ type.value }}" {% if type.value in type_of_employment %}checked{% endif %}>
+                                <label for="typeCheck{{ type.filter_value_id }}" class="form-check-label">
+                                    {{ type.value}}</label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        
+                        <!-- Checkbox Schedule Filter -->
+                        <div class="filter">
+                            <label class="filter-title">Режим работы</label>
+                            {% for sched in schedules %}
+                            <div class="form-check">
+                                <!-- ruff: noqa -->
+                                <input type="checkbox" class="form-check-input"
+                                    id="schedCheck{{ sched.filter_value_id }}" name="schedule" value="{{ sched.value }}"
+                                    {% if sched.value in schedule %}checked{% endif %}>
+                                    <label for="schedCheck{{ sched.filter_value_id }}" class="form-check-label">
+                                        {{sched.value }}</label>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                
+                        <!-- Checkbox Invalids Filter -->
+                        <div class="filter">
+                            <div class="form-check">
+                                <!-- ruff: noqa -->
+                                <input type="checkbox" class="form-check-input" id="invalidsCheck" name="invalids" {% if invalids %}checked{% endif %}>
+                                <label for="invalidsCheck" class="form-check-label">Подходит для людей
+                                    с&nbsp;инвалидностью</label>
+                            </div>
+                        </div>
+
+                        <!-- Checkbox Salary Filter -->
+                        <div class="filter">
+                            <label class="filter-title">Зарплата</label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="salaryFrom" class="form-label">От</label>
+                                    <input type="number" class="form-control" id="salaryFrom" name="salary_from"
+                                        placeholder="От" value="{{ salary_from }}">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="salaryTo" class="form-label">До</label>
+                                    <input type="number" class="form-control" id="salaryTo" name="salary_to"
+                                        placeholder="До" value="{{ salary_to }}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Checkbox Income Stated Filter -->
+                        <div class="filter">
+                            <div class="form-check">
+                                <!-- ruff: noqa -->
+                                <input type="checkbox" class="form-check-input" id="incStatedCheck" name="income_stated" {% if income_stated %}checked{% endif %}>
+                                <label for="incStatedCheck" class="form-check-label">Указан доход</label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 my-2">Применить фильтры</button>
+                        <a href="{% url 'vacancies' %}" class="btn btn-outline-primary d-block">Сбросить фильтры</a>
+                    </form>
+                </div>
+            </div>
+            <!-- jobs -->
+            <div class="col-md-8">
+                <!-- Cards -->
+                <div class="jobs">
+                    {% for vacancy in vacancies %}
+                    <div class="job mb-3">
+                        <a href="{% url 'vacancy_detail' vacancy.vacancy_id %}" class="job-card-link">
+                            <div class="job-card p-3">
+                                <div class="job-card-title">{{ vacancy.title }}</div>
+                                <div class="job-card-salary">
+                                    {% if vacancy.min_salary and vacancy.max_salary %}
+                                        {{ vacancy.min_salary|intcomma }} - {{ vacancy.max_salary|intcomma }}
+                                    {% elif vacancy.min_salary %}
+                                        от {{ vacancy.min_salary|intcomma }}
+                                    {% elif vacancy.max_salary %}
+                                        до {{ vacancy.max_salary|intcomma }}
+                                    {% endif %}
+                                </div>
+                                <p class="job-card-text">
+                                    <i class="bi bi-geo-alt"></i>
+                                    {{ vacancy.company.city.title }}
+                                </p>
+                                <p class="job-card-text">
+                                    <i class="bi bi-briefcase"></i>
+                                    Опыт работы: {{ vacancy.filters.first.filter_value.value }}
+                                </p>
+                                <p class="job-card-text">
+                                    <i class="bi bi-hash"></i>
+                                    {{ vacancy.company.title }}
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- Pagination -->
+                {% if vacancies.paginator.num_pages > 1 %}
+                <nav>
+                    <ul class="pagination">
+                        {% if vacancies.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ vacancies.previous_page_number }}"
+                                aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% for i in vacancies.paginator.page_range %}
+                        <li class="page-item {% if i == vacancies.number %}active{% endif %}">
+                            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                        </li>
+                        {% endfor %}
+                        {% if vacancies.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ vacancies.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/combined-forms.js' %}"></script>
+{% endblock %}

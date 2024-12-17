@@ -1,0 +1,105 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Центр Карьеры Госкорпорации Росатом {% block title %}{% endblock %}</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/footer.css' %}">
+
+    {% block styles %}{% endblock %}
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white">
+        <div class="container">
+            <a href="{% url 'index' %}" class="navbar-brand">ЦЕНТР КАРЬЕРЫ</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="navbar-item">
+                        <a href="{% url 'vacancies' %}" class="nav-link">Вакансии</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="{% url 'employment' %}" class="nav-link">Трудоустройство</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="{% url 'vacancies' %}?type_of_employment=Практика&type_of_employment=Стажировка" class="nav-link">Практики и&nbsp;стажировки</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="{% url 'events' %}" class="nav-link">Карьерные мероприятия</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="https://vk.com/personal_ehp" target="_blank" class="nav-link">
+                            <i class="fa-brands fa-vk fa-2xl" style="color: #0d6efd;"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        {% block content%}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer py-3 py-sm-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md">
+                    <div class="d-flex flex-column">
+                        <a href="{% url 'index' %}" class="navbar-brand">ЦЕНТР КАРЬЕРЫ</a>
+                        <p class="subheading">Свердловская область, г. Лесной, Коммунистический проспект, 36</p>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <ul class="footer-list ms-auto d-flex flex-column flex-md-row">
+                        <li class="footer-item">
+                            <a href="{% url 'vacancies' %}" class="footer-link">Вакансии</a>
+                        </li>
+                        <li class="footer-item">
+                            <a href="{% url 'employment' %}" class="footer-link">Трудоустройство</a>
+                        </li>
+                        <li class="footer-item">
+                            <a href="{% url 'vacancies' %}?type_of_employment=Практика&type_of_employment=Стажировка" class="footer-link">Практики и&nbsp;стажировки</a>
+                        </li>
+                        <li class="footer-item">
+                            <a href="{% url 'events' %}" class="footer-link">Карьерные мероприятия</a>
+                        </li>
+                        <li class="footer-item">
+                            <a href="https://vk.com/personal_ehp" target="_blank" class="nav-link">
+                                <i class="fa-brands fa-vk fa-2xl" style="color: #0d6efd;"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+    {% block scripts %}{% endblock %}
+</body>
+
+</html>

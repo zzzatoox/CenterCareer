@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Трудоустройство{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/employment.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="about py-3 py-sm-5" id="employment">
+    <div class="container">
+        <h1 class="display-4 mb-5">Трудоустройство</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Обязательные документы</h2>
+                <ul>
+                    <li>Паспорт&nbsp;РФ: страницы 2-3 (с&nbsp;фотографией) и&nbsp;5-12 (с&nbsp;пропиской).</li>
+                    <li>СНИЛС (страховое свидетельство пенсионного страхования).</li>
+                    <li>ИНН (идентификационный номер налогоплательщика).</li>
+                    <li>Выписка из&nbsp;электронной трудовой книжки: выписку можно заказать на&nbsp;портале
+                        Госуслуг.</li>
+                    <li>Бумажная трудовая книжка: при наличии.</li>
+                    <li>Документ об&nbsp;образовании: диплом о&nbsp;высшем или среднем профессиональном
+                        образовании, аттестат о&nbsp;среднем общем образовании и&nbsp;т.д.</li>
+                    <li>Реквизиты банковского счета: для начисления заработной платы.</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h2>Дополнительные документы</h2>
+                <ul>
+                    <li>Заграничный паспорт: при наличии.</li>
+                    <li>Свидетельство о&nbsp;браке: при наличии.</li>
+                    <li>Свидетельства о&nbsp;рождении детей: до&nbsp;18&nbsp;лет.</li>
+                    <li>Документы воинского учета: для военнообязанных и&nbsp;лиц, подлежащих призыву
+                        на&nbsp;военную службу.
+                    </li>
+                    <li>Выписка о&nbsp;состоянии индивидуального лицевого счета застрахованного лица: выписку
+                        можно заказать на&nbsp;портале Госуслуг.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <h2>Важная информация</h2>
+                <ul>
+                    <li>Все копии документов должны быть четкими и&nbsp;читаемыми.</li>
+                    <li>Оригиналы документов необходимо иметь при себе для сверки.</li>
+                    <li>В&nbsp;случае необходимости, сотрудники Центра Карьеры могут запросить дополнительные
+                        документы.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="team py-3 py-sm-5">
+    <div class="container">
+        <div class="row align-items-center card-row justify-content-center">
+            <div class="col-md-6 text-col">
+                <h2>Куда их отнести?</h2>
+                <p class="subheading">
+                    Копии документов просим принести в&nbsp;бумажном виде в&nbsp;&laquo;Центр Карьеры&raquo;,
+                    расположенный в&nbsp;здании ТИ&nbsp;НИЯУ МИФИ на&nbsp;3&nbsp;этаже, кабинет 306.
+                </p>
+                <h2 class="mt-5">Полезные ссылки</h2>
+                <ul>
+                    <li><a href="https://www.gosuslugi.ru/" target="_blank">Портал Госуслуг</a></li>
+                    <li><a href="https://mephi3.ru/" target="_blank">Сайт ТИ НИЯУ МИФИ</a></li>
+                </ul>
+                <h2 class="mt-5">Контакты</h2>
+                <ul>
+                    <li>Почта: IVPitirimov@mephi.ru</li>
+                </ul>
+            </div>
+            <div class="col-md-6 image-col">
+                <img src="{% static 'images/centercareer.jpg' %}"
+                    alt="Кабинет Центра Карьеры: два рабочих места с компьютерами, уютной мебелью и зеленью на полке, создающие комфортную атмосферу для профессионального роста."
+                    class="img-fluid rounded">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center mb-4">Карта проезда</h2>
+                <div class="map-responsive">
+                    <iframe
+                        src="https://yandex.ru/map-widget/v1/?ll=59.790162%2C58.630173&mode=search&oid=1088137020&ol=biz&sctx=ZAAAAAgBEAAaKAoSCZjArbt5TE5AERlYx%2FFDa0xAEhIJ%2BWcG8YEd1z8RGM3K9iFvvT8iBgABAgMEBSgKOABAn1dIAWoCcnWdAc3MzD2gAQCoAQC9AfkdRrfCAQW8zu6GBIICFtCi0Jgg0J3QmNCv0KMg0JzQmNCk0JiKAgCSAgCaAgxkZXNrdG9wLW1hcHM%3D&sll=59.790162%2C58.630173&sspn=0.013146%2C0.003982&text=%D0%A2%D0%98%20%D0%9D%D0%98%D0%AF%D0%A3%20%D0%9C%D0%98%D0%A4%D0%98&z=16.78"
+                        width="100%" height="500px" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load humanize %}
+{% load custom_filters %}
+
+{% block title %}Вакансия - {{ vacancy.title }}{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/vacancy_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="vacancy py-3 py-sm-5">
+    <div class="container">
+        <div class="row">
+            <div class="job-card p-3">
+                <div class="job-card-title">{{ vacancy.title }}</div>
+                <div class="job-card-salary">
+                    {% if vacancy.min_salary and vacancy.max_salary %}
+                        {{ vacancy.min_salary|intcomma }} - {{ vacancy.max_salary|intcomma }}
+                    {% elif vacancy.min_salary %}
+                        от {{ vacancy.min_salary|intcomma }}
+                    {% elif vacancy.max_salary %}
+                        до {{ vacancy.max_salary|intcomma }}
+                    {% endif %}
+                </div>
+                <p class="job-card-text">
+                    <i class="bi bi-geo-alt"></i>
+                    {{ vacancy.company.city.title }}
+                </p>
+                <p class="job-card-text">
+                    <i class="bi bi-briefcase"></i>
+                    Опыт работы: {{ vacancy.filters.first.filter_value.value }}
+                </p>
+                <p class="job-card-text">
+                    <i class="bi bi-hash"></i>
+                    {{ vacancy.company.title }}
+                </p>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="job-card p-3">
+                <div class="job-card-title mb-2">Описание вакансии</div>
+                <p class="subheading">
+                    {% if vacancy.description|trim %}
+                        {{ vacancy.description|safe }}
+                    {% else %}
+                        Описание отсутствует.
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

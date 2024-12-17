@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load custom_filters %}
+
+{% block title %}Мероприятие - {{ event.title }}{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/event_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="py-3 py-sm-5">
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="image-col text-center">
+                {% if event.photo %}
+                <img class="img-fluid rounded" width="700" height="500" src="{{ event.photo.url }}"
+                    alt="{{ event.title }}" />
+                {% else %}
+                <img class="img-fluid rounded" width="700" height="500" src="{% static 'images/event-detail.png' %}"
+                    alt="{{ event.title }}" />
+                {% endif %}
+            </div>
+        </div>
+        <div class="row align-items-center">
+            <div class="fs-5 text-col">
+                <div class="event-info my-2">
+                    <h1 class="text-start mb-3">{{ event.title }}</h1>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-calendar-event-fill me-2 text-primary"></i>
+                        <span class="subheading">Дата: {{ event.event_date }}</span>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-alarm-fill me-2 text-primary"></i>
+                        <span class="subheading">Время: {{ event.start_time }} &mdash; {{ event.end_time }}</span>
+                    </div>
+                    {% if event.location.location %}
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-geo-alt-fill me-2 text-primary"></i>
+                        <span class="subheading">{{ event.location.location }}</span>
+                    </div>
+                    {% endif %}
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-envelope-fill me-2 text-primary"></i>
+                        <span class="subheading">IVPitirimov@mephi.ru</span>
+                    </div>
+                </div>
+                <div class="description">
+                    <h2>Описание мероприятия</h2>
+                    <span class="subheading">
+                        {% if event.description|trim %}
+                            {{ event.description|safe }}
+                        {% else %}
+                            Описание отсутствует.
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

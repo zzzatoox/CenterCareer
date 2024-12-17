@@ -1,0 +1,271 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Главная {% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block content%}
+<section class="hero py-3 py-sm-5">
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-6 text-center text-sm-start">
+                <h1 class="display-4">НАЧНИ СВОЮ КАРЬЕРУ С&nbsp;НАМИ</h1>
+                <p class="subheading">Ваша карьера&nbsp;&mdash; наша миссия. Мы&nbsp;поможем найти работу мечты
+                    и&nbsp;построить
+                    успешную
+                    карьеру.</p>
+
+                <div class="cta d-flex flex-column">
+                    <a class="btn btn-lg btn-primary" href="{% url 'vacancies' %}">
+                        Смотреть вакансии
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                    <a class="btn btn-lg btn-primary" href="{% url 'events' %}">
+                        Карьерные мероприятия
+                        <i class="bi bi-calendar-event"></i>
+                    </a>
+                    <a class="btn btn-lg btn-primary mb-3 mb-md-0" href="https://vk.com/personal_ehp" target="_blank">
+                        Работа на&nbsp;ЭХП
+                        <i class="bi bi-person-fill"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'images/hero-img.png' %}" alt="" width="590" height="600" class="img-fluid rounded">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features py-3 py-sm-5">
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-4 text-center">
+                <p class="h1 pb-2" style="border-bottom: 1px solid #D7DAE2;">100+</p>
+                <p class="subheading">Вакансий</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <p class="h1 pb-2" style="border-bottom: 1px solid #D7DAE2;">20+</p>
+                <p class="subheading">Сотрудничающих компаний</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <p class="h1 pb-2" style="border-bottom: 1px solid #D7DAE2;">-</p>
+                <p class="subheading">Трудоустроенных</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content py-3 py-sm-5">
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-6 text-center text-sm-start">
+                <div class="mt-2">
+                    <span>
+                        <i class="bi bi-arrow-right right-arrow d-none d-sm-inline-block"></i>
+                        <a href="{% url 'vacancies' %}">
+                            ВАКАНСИИ
+                        </a>
+                    </span>
+                    <p class="subheading">Найдите работу своей мечты
+                        среды тысяч
+                        актуальных вакансий</p>
+                </div>
+                <div class="mt-2">
+                    <span>
+                        <i class="bi bi-arrow-right right-arrow d-none d-sm-inline-block"></i>
+                        <a href="{% url 'employment' %}">
+                            ТРУДОУСТРОЙСТВО
+                        </a>
+                    </span>
+                    <p class="subheading">Получите профессиональную поддержку на&nbsp;всех этапах
+                        трудоустройства</p>
+                </div>
+                <div class="mt-2">
+                    <span>
+                        <i class="bi bi-arrow-right right-arrow d-none d-sm-inline-block"></i>
+                        <a href="{% url 'vacancies' %}?type_of_employment=Практика&type_of_employment=Стажировка">
+                            ПРАКТИКИ И&nbsp;СТАЖИРОВКИ
+                        </a>
+                    </span>
+                    <p class="subheading">Получите практический опыт и&nbsp;возможность начать карьеру
+                        в&nbsp;ведущих компаниях</p>
+                </div>
+                <div class="mt-2">
+                    <span>
+                        <i class="bi bi-arrow-right right-arrow d-none d-sm-inline-block"></i>
+                        <a href="{% url 'events' %}">
+                            КАРЬЕРНЫЕ МЕРОПРИЯТИЯ
+                        </a>
+                    </span>
+                    <p class="subheading">Присоединяйтесь к&nbsp;вебинарам, мастер-классам и&nbsp;конференциям,
+                        чтобы развиваться профессионально.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'images/content-img.png' %}" alt="" width="580" height="522"
+                    class="img-fluid rounded d-none d-sm-block">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="testimonial py-3 py-sm-5">
+    <div class="container">
+        <div class="row text-center">
+            <h2>Отзывы</h2>
+            <div class="heading-container text-center">
+                <p class="subheading" style="display: inline-block; max-width: 500px;">Поделитесь своими
+                    впечатлениями, расскажите о&nbsp;достижениях и&nbsp;вдохновите других на&nbsp;новые
+                    свершения.</p>
+            </div>
+        </div>
+        <div class="row g-2">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="{% static 'images/avatar.png' %}" width="60" height="60" alt=""
+                                style="border-radius: 50%;">
+                            <div class="ms-2">
+                                <p class="card-title">Мария Васильева</p>
+                                <p class="card-subtitle text-muted">Должность</p>
+                            </div>
+                        </div>
+                        <p class="card-text subheading">Стажировка в&nbsp;Центре Карьеры позволяет научиться
+                            многому. Культура работы, человеческие отношения внутри коллектива, командная
+                            работа&nbsp;&mdash; все это важные и&nbsp;полезные социальные,
+                            и&nbsp;профессиональные навыки. Решать задачи, связанные с&nbsp;1С, довольно
+                            интересно. Даже если твоя специальность связана с&nbsp;другой конфигурацией</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="{% static 'images/avatar.png' %}" alt="" width="60" height="60"
+                                style="border-radius: 50%;">
+                            <div class="ms-2">
+                                <p class="card-title">Максим Афанасьев</p>
+                                <p class="card-subtitle text-muted">Должность</p>
+                            </div>
+                        </div>
+                        <p class="card-text subheading">Формат стажировки был классный, даже чем-то напоминал
+                            обучение в&nbsp;западных университетах, где дают свободу на&nbsp;выбор информации.
+                            Наш ментор, Виктор Викторович, отправлял материалы на&nbsp;неделю вперед.
+                            Мы&nbsp;делали практику и&nbsp;в&nbsp;конце недели сдавали лабораторные работы.
+                            Мы&nbsp;изучали Java, DevOps, базы данных</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="{% static 'images/avatar.png' %}" alt="" width="60" height="60"
+                                style="border-radius: 50%;">
+                            <div class="ms-2">
+                                <p class="card-title">Анна Петрова</p>
+                                <p class="card-subtitle text-muted">Должность</p>
+                            </div>
+                        </div>
+                        <p class="card-text subheading">Стажировка в&nbsp;компании ФГУП Комбинат &laquo;Электрохимприбор&raquo; стала
+                            для меня настоящим открытием. Я&nbsp;получила не&nbsp;только практические навыки
+                            в&nbsp;области экологического строительства, но&nbsp;и&nbsp;научилась работать
+                            в&nbsp;команде, решать сложные задачи и&nbsp;принимать самостоятельные решения. Это
+                            был не&nbsp;просто стаж, а&nbsp;настоящий профессиональный рост</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="faq py-3 py-sm-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 text-center text-md-start">
+                <h2 class="fw-bold display-4">Часто задаваемые вопросы</h1>
+            </div>
+            <div class="col-md-7">
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseOne">
+                                Будут&nbsp;ли мне платить зарплату?
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p class="subheading">
+                                    Да, работа каждого стажёра оплачивается. Зарплата зависит
+                                    от&nbsp;фактического времени работы.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseTwo">
+                                Сколько длится стажировка?
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse show"
+                            aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p class="subheading">
+                                    Минимально стажировка рассчитана на&nbsp;3&nbsp;месяца. Бывают программы
+                                    и&nbsp;большей продолжительности. Срок определяется из&nbsp;твоего графика
+                                    и&nbsp;специфики направления.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseThree">
+                                Что будет, когда стажировка закончится?
+                            </button>
+                        </h2>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p class="subheading">
+                                    Лучшим стажёрам мы&nbsp;предлагаем заключить бессрочный
+                                    контракт&nbsp;&mdash; устроиться на&nbsp;постоянную работу в&nbsp;нашу
+                                    отрасль.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseFour">
+                                Что нужно уметь стажеру?
+                            </button>
+                        </h2>
+                        <div id="flush-collapseFour" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p class="subheading">
+                                    Требования зависят от&nbsp;направления.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
