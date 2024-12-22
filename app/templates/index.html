@@ -4,6 +4,22 @@
 
 {% block title %} Главная {% endblock %}
 
+{% block meta %}
+<meta name="description" content="Начни свою карьеру с нами! Мы помогаем найти работу мечты, трудоустроиться и развиваться профессионально. Более 100 вакансий, 20+ компаний и множество карьерных мероприятий.">
+<meta name="keywords" content="карьера, работа, вакансии, трудоустройство, стажировки, практики, карьерные мероприятия, Электрохимприбор, ФГУП, НИЯУ МИФИ">
+<meta name="author" content="Центр Карьеры ГК Росатом">
+
+<link rel="canonical" href="https://career.mephi3.ru/">
+
+<meta property="og:title" content="Начни свою карьеру с нами">
+<meta property="og:description" content="Ваша карьера — наша миссия. Мы поможем найти работу мечты и построить успешную карьеру.">
+<meta property="og:image" content="https://career.mephi3.ru{% static 'images/home/5.jpeg' %}">
+<meta property="og:url" content="https://career.mephi3.ru/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Центр Карьеры ГК Росатом">
+<meta property="og:locale" content="ru_RU">
+{% endblock %}
+
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock %}
@@ -35,7 +51,57 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <img src="{% static 'images/hero-img.png' %}" alt="" width="590" height="600" class="img-fluid rounded">
+                <div
+                id="carouselExampleControls"
+                class="carousel slide"
+                data-bs-ride="carousel"
+                data-bs-pause="false"
+              >
+                <div class="carousel-inner rounded">
+                  <div class="carousel-item active" data-bs-interval="3500">
+                    <img
+                      src="{% static 'images/home/5.jpeg' %}"
+                      class="carousel-img d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                  <div class="carousel-item" data-bs-interval="3500">
+                    <img
+                      src="{% static 'images/home/6.jpeg' %}"
+                      class="carousel-img d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                  <div class="carousel-item" data-bs-interval="3500">
+                    <img
+                      src="{% static 'images/home/7.jpeg' %}"
+                      class="carousel-img d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                  <div class="carousel-item" data-bs-interval="3500">
+                    <img
+                      src="{% static 'images/home/1.jpg' %}"
+                      class="carousel-img d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                  <div class="carousel-item" data-bs-interval="3500">
+                    <img
+                      src="{% static 'images/home/2.jpg' %}"
+                      class="carousel-img d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                  <div class="carousel-item" data-bs-interval="3500">
+                    <img
+                      src="{% static 'images/home/3.jpg' %}"
+                      class="carousel-img d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
         </div>
     </div>
@@ -63,7 +129,7 @@
 <section class="content py-3 py-sm-5">
     <div class="container">
         <div class="row align-items-center justify-content-center">
-            <div class="col-md-6 text-center text-sm-start">
+            <div class="col-12 col-lg-6 text-center text-sm-start">
                 <div class="mt-2">
                     <span>
                         <i class="bi bi-arrow-right right-arrow d-none d-sm-inline-block"></i>
@@ -106,9 +172,9 @@
                         чтобы развиваться профессионально.</p>
                 </div>
             </div>
-            <div class="col-md-6">
-                <img src="{% static 'images/content-img.png' %}" alt="" width="580" height="522"
-                    class="img-fluid rounded d-none d-sm-block">
+            <div class="col-12 col-lg-6">
+                <img src="{% static 'images/home/content-1.jpg' %}" alt="" width="580" height="522"
+                    class="img-fluid rounded d-none d-lg-block">
             </div>
         </div>
     </div>
@@ -125,64 +191,105 @@
             </div>
         </div>
         <div class="row g-2">
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="{% static 'images/avatar.png' %}" width="60" height="60" alt=""
-                                style="border-radius: 50%;">
-                            <div class="ms-2">
-                                <p class="card-title">Мария Васильева</p>
-                                <p class="card-subtitle text-muted">Должность</p>
-                            </div>
-                        </div>
-                        <p class="card-text subheading">Стажировка в&nbsp;Центре Карьеры позволяет научиться
-                            многому. Культура работы, человеческие отношения внутри коллектива, командная
-                            работа&nbsp;&mdash; все это важные и&nbsp;полезные социальные,
-                            и&nbsp;профессиональные навыки. Решать задачи, связанные с&nbsp;1С, довольно
-                            интересно. Даже если твоя специальность связана с&nbsp;другой конфигурацией</p>
+            <div class="col-12 col-lg-4">
+              <div class="card h-100" style="min-width: 100%">
+                <div class="card-body">
+                  <div class="d-flex align-items-center mb-3">
+                    <img
+                      src="{% static 'images/home/review-1.jpg' %}"
+                      width="60"
+                      height="60"
+                      alt=""
+                      style="border-radius: 50%"
+                    />
+                    <div class="ms-2">
+                      <p class="card-title">Любовь Головина</p>
+                      <!-- <p class="card-subtitle text-muted">Должность</p> -->
                     </div>
+                  </div>
+                  <p class="card-text subheading">
+                    В&nbsp;настоящее время я&nbsp;прохожу производственную
+                    практику на&nbsp;престижном предприятии ФГУП &laquo;Комбинат
+                    &laquo;Электрохимприбор&raquo;. У&nbsp;меня есть возможность
+                    работать под руководством опытных специалистов, которые
+                    делятся своими знаниями и&nbsp;помогают мне развить
+                    профессиональные компетенции. Сейчас я&nbsp;учусь
+                    в&nbsp;Технологическом институте НИЯУ МИФИ, на&nbsp;целевом,
+                    по&nbsp;направлению &laquo;Информатика и&nbsp;вычислительная
+                    техника&raquo;, а&nbsp;в&nbsp;дальнейшем планирую работать
+                    на&nbsp;комбинате. Я&nbsp;хочу быть частью команды
+                    профессионалов!
+                  </p>
                 </div>
+              </div>
             </div>
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="{% static 'images/avatar.png' %}" alt="" width="60" height="60"
-                                style="border-radius: 50%;">
-                            <div class="ms-2">
-                                <p class="card-title">Максим Афанасьев</p>
-                                <p class="card-subtitle text-muted">Должность</p>
-                            </div>
-                        </div>
-                        <p class="card-text subheading">Формат стажировки был классный, даже чем-то напоминал
-                            обучение в&nbsp;западных университетах, где дают свободу на&nbsp;выбор информации.
-                            Наш ментор, Виктор Викторович, отправлял материалы на&nbsp;неделю вперед.
-                            Мы&nbsp;делали практику и&nbsp;в&nbsp;конце недели сдавали лабораторные работы.
-                            Мы&nbsp;изучали Java, DevOps, базы данных</p>
+            <div class="col-12 col-lg-4">
+              <div class="card h-100" style="min-width: 100%">
+                <div class="card-body">
+                  <div class="d-flex align-items-center mb-3">
+                    <img
+                      src="{% static 'images/home/review-2.jpg' %}"
+                      alt=""
+                      width="60"
+                      height="60"
+                      style="border-radius: 50%"
+                    />
+                    <div class="ms-2">
+                      <p class="card-title">Влада Давыдова</p>
+                      <!-- <p class="card-subtitle text-muted">Должность</p> -->
                     </div>
+                  </div>
+                  <p class="card-text subheading">
+                    В&nbsp;настоящее время прохожу производственную практику
+                    на&nbsp;ФГУП &laquo;Комбинат &laquo;Электрохимприбор&raquo;.
+                    Этот опыт для меня чрезвычайно полезный и&nbsp;насыщенный.
+                    Практика позволяет мне глубже понять специфику работы
+                    в&nbsp;атомной промышленности и&nbsp;осознать, какой вклад
+                    каждый сотрудник вносит в&nbsp;общее дело. Особенно хочется
+                    отметить дружелюбную и&nbsp;поддерживающую атмосферу
+                    коллектива. Специалисты комбината всегда готовы поделиться
+                    своим опытом и&nbsp;оказать помощь, что создает идеальные
+                    условия для профессионального роста. Планирую в&nbsp;будущем
+                    вернуться на&nbsp;комбинат в&nbsp;качестве полноценного
+                    сотрудника. Хочу выразить благодарность руководству
+                    ТИ&nbsp;НИЯУ МИФИ и&nbsp;ФГУП &laquo;Комбинат
+                    &laquo;Электрохимприбор&raquo; за&nbsp;предоставленную
+                    возможность пройти такую ценную практику
+                    и&nbsp;за&nbsp;поддержку на&nbsp;этом пути.
+                  </p>
                 </div>
+              </div>
             </div>
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="{% static 'images/avatar.png' %}" alt="" width="60" height="60"
-                                style="border-radius: 50%;">
-                            <div class="ms-2">
-                                <p class="card-title">Анна Петрова</p>
-                                <p class="card-subtitle text-muted">Должность</p>
-                            </div>
-                        </div>
-                        <p class="card-text subheading">Стажировка в&nbsp;компании ФГУП Комбинат &laquo;Электрохимприбор&raquo; стала
-                            для меня настоящим открытием. Я&nbsp;получила не&nbsp;только практические навыки
-                            в&nbsp;области экологического строительства, но&nbsp;и&nbsp;научилась работать
-                            в&nbsp;команде, решать сложные задачи и&nbsp;принимать самостоятельные решения. Это
-                            был не&nbsp;просто стаж, а&nbsp;настоящий профессиональный рост</p>
+            <div class="col-12 col-lg-4">
+              <div class="card h-100" style="min-width: 100%">
+                <div class="card-body">
+                  <div class="d-flex align-items-center mb-3">
+                    <img
+                      src="{% static 'images/home/review-3.jpg' %}"
+                      alt=""
+                      width="60"
+                      height="60"
+                      style="border-radius: 50%"
+                    />
+                    <div class="ms-2">
+                      <p class="card-title">Владимир Крохин</p>
+                      <!-- <p class="card-subtitle text-muted">Должность</p> -->
                     </div>
+                  </div>
+                  <p class="card-text subheading">
+                    На&nbsp;практике я&nbsp;столкнулся с&nbsp;решением насущных
+                    проблем, связанных с&nbsp;импортозамещением&nbsp;ПО:
+                    принимал участие в&nbsp;миграции с&nbsp;системы управления
+                    базами данных MS&nbsp;SQL на&nbsp;PostgreSQL. Кроме того,
+                    занимался разработкой служебного приложения размещения
+                    сканов архивных документов на&nbsp;файловой системе АРМ.
+                    Практика помогла мне найти применение знаниям, которые
+                    я&nbsp;получил в&nbsp;стенах родного института.
+                  </p>
                 </div>
+              </div>
             </div>
-        </div>
+          </div>
     </div>
 </section>
 
@@ -190,7 +297,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-5 text-center text-md-start">
-                <h2 class="fw-bold display-4">Часто задаваемые вопросы</h1>
+                <h2 class="fw-bold display-4">Часто задаваемые вопросы</h2>
             </div>
             <div class="col-md-7">
                 <div class="accordion accordion-flush" id="accordionFlushExample">

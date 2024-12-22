@@ -6,6 +6,25 @@
 
 {% block title %}Вакансия - {{ vacancy.title }}{% endblock %}
 
+{% block meta %}
+<meta name="description" content="Подробная информация о вакансии: {{ vacancy.title }}. Зарплата, требования, описание и контакты.">
+<meta name="keywords" content="вакансия, {{ vacancy.title }}, работа, трудоустройство, Центр Карьеры, ТИ НИЯУ МИФИ">
+<meta name="author" content="Центр Карьеры ГК Росатом">
+
+<link rel="canonical" href="https://career.mephi3.ru/vacancies/{{ vacancy.vacancy_id }}/">
+
+<meta property="og:title" content="{{ vacancy.title }}">
+<meta property="og:description" content="Подробная информация о вакансии: {{ vacancy.title }}. Зарплата, требования, описание и контакты.">
+<meta property="og:image" content="https://career.mephi3.ru{% static 'images/vacancies/default.jpeg' %}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Изображение вакансии: {{ vacancy.title }}">
+<meta property="og:url" content="https://career.mephi3.ru/vacancies/{{ vacancy.vacancy_id }}/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Центр Карьеры ГК Росатом">
+<meta property="og:locale" content="ru_RU">
+{% endblock %}
+
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/vacancy_detail.css' %}">
 {% endblock %}

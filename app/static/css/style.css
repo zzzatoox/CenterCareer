@@ -1,67 +1,73 @@
 .content .subheading {
-    margin-top: 12px;
-    margin-left: 38px;
+  margin-top: 12px;
+  margin-left: 38px;
 }
 
 @media (max-width: 576px) {
-    .content .subheading {
-        margin-left: 0;
-    }
+  .content .subheading {
+    margin-left: 0;
+  }
 }
 
 @media (min-width: 1200px) {
-    .cta a {
-        max-width: 80%;
-    }
+  .cta a {
+    max-width: 80%;
+  }
 
-    .hero p {
-        max-width: 80%;
-    }
+  .hero p {
+    max-width: 80%;
+  }
 }
 
 @media (max-width: 768px) {
-    .cta a {
-        max-width: 100%;
-    }
+  .cta a {
+    max-width: 100%;
+  }
 }
 
 .cta a {
-    margin-block: 5px;
+  margin-block: 5px;
 }
 
 .right-arrow {
-    margin-right: 16px;
-    color: #0d6efd !important;
+  margin-right: 16px;
+  color: #0d6efd !important;
 }
 
-span>a {
-    font-size: 30px;
-    line-height: 38px !important;
-    font-weight: bold !important;
-    color: #2B2D33;
-    vertical-align: middle !important;
+span > a {
+  font-size: 30px;
+  line-height: 38px !important;
+  font-weight: bold !important;
+  color: #2b2d33;
+  vertical-align: middle !important;
 }
 
 .card {
-    max-width: 538px;
+  max-width: 538px;
 }
 
 .card-title {
-    font-size: 18px;
-    line-height: 28px;
-    font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 600;
 }
 
 .card-subtitle {
-    font-size: 16px;
-    line-height: 24px;
-    color: #999EAD;
+  font-size: 16px;
+  line-height: 24px;
+  color: #999ead;
 }
 
 .accordion-button {
-    font-size: 24px;
-    font-weight: bold !important;
-    line-height: 32px;
-    color: #2B2D33;
-    box-shadow: none !important;
+  font-size: 24px;
+  font-weight: bold !important;
+  line-height: 32px;
+  color: #2b2d33;
+  box-shadow: none !important;
+}
+
+.carousel-img {
+  width: 100%;
+  height: 400px !important;
+  object-fit: cover;
 }

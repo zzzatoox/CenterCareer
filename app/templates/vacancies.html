@@ -5,6 +5,25 @@
 
 {% block title %}Вакансии{% endblock %}
 
+{% block meta %}
+<meta name="description" content="Более 100 актуальных вакансий для вас. Найдите работу мечты с помощью нашего удобного поиска и фильтров.">
+<meta name="keywords" content="вакансии, работа, поиск работы, трудоустройство, стажировки, практики, Центр Карьеры, ТИ НИЯУ МИФИ">
+<meta name="author" content="Центр Карьеры ГК Росатом">
+
+<link rel="canonical" href="https://career.mephi3.ru/vacancies/">
+
+<meta property="og:title" content="Вакансии">
+<meta property="og:description" content="Более 1000 актуальных вакансий для вас. Найдите работу мечты с помощью нашего удобного поиска и фильтров.">
+<meta property="og:image" content="https://career.mephi3.ru{% static 'images/vacancies/default.jpeg' %}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Изображение страницы с вакансиями: список актуальных предложений работы.">
+<meta property="og:url" content="https://career.mephi3.ru/vacancies/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Центр Карьеры ГК Росатом">
+<meta property="og:locale" content="ru_RU">
+{% endblock %}
+
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/vacancies.css' %}">
 {% endblock %}
