@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %} Ошибка 403 {% endblock %}
+
+{% block meta %}
+<meta name="description" content="Ошибка 403: доступ запрещён. У вас нет разрешения для просмотра этой страницы.">
+<meta name="keywords" content="ошибка 403, доступ запрещён, разрешение">
+<meta name="author" content="Центр Карьеры ГК Росатом">
+
+<link rel="canonical" href="https://career.mephi3.ru/403/">
+
+<meta property="og:title" content="Ошибка 403: доступ запрещён">
+<meta property="og:description" content="Ошибка 403: доступ запрещён. У вас нет разрешения для просмотра этой страницы.">
+<meta property="og:url" content="https://career.mephi3.ru/403/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Центр Карьеры ГК Росатом">
+<meta property="og:locale" content="ru_RU">
+{% endblock %}
+
+{% block content %}
+<section class="403">
+    <div class="container">
+        <div class="row vh-100 align-items-center justify-content-center">
+            <div class="col-sm-12 col-md-8 col-lg-6 col-xl-4">
+                <div class="error-message text-center">
+                    <h1>403</h1>
+                    <p class="subheading">Доступ запрещён.</p>
+                    <p>У вас нет разрешения для просмотра этой страницы.</p>
+                    <a href="{% url 'index' %}" class="btn btn-primary d-md-block">Перейти на главную</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

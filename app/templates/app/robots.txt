@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /media/
+Disallow: /static/
+
+Sitemap: https://career.mephi3.ru/sitemap.xml

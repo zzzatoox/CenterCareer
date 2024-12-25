@@ -19,12 +19,38 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from django.conf.urls import handler404
-from .views import custom_page_not_found
+from django.conf.urls import handler404, handler500, handler403
+from .views import custom_page_not_found, custom_server_error, custom_permission_denied
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import StaticViewSitemap, VacancySitemap, EventSitemap
 
-urlpatterns = [path("admin/", admin.site.urls), path("", include("app.urls"))]
+from django.views.generic import TemplateView
+
+sitemaps = {
+    "static": StaticViewSitemap,
+    "vacancies": VacancySitemap,
+    "events": EventSitemap,
+}
+
+
+urlpatterns = [
+    path(
+        "sitemap.xml",
+        sitemap,
+        {"sitemaps": sitemaps},
+        name="django.contrib.sitemaps.views.sitemap",
+    ),
+    path(
+        "robots.txt",
+        TemplateView.as_view(template_name="app/robots.txt", content_type="text/plain"),
+    ),
+    path("admin/", admin.site.urls),
+    path("", include("app.urls")),
+]
 
 handler404 = custom_page_not_found
+handler500 = custom_server_error
+handler403 = custom_permission_denied
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

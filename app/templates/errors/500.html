@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Ошибка 500 {% endblock %}
+
+{% block meta %}
+<meta name="description" content="Ошибка 500: внутренняя ошибка сервера. Попробуйте перейти на главную страницу.">
+<meta name="keywords" content="ошибка 500, внутренняя ошибка сервера, главная страница">
+<meta name="author" content="Центр Карьеры ГК Росатом">
+
+<link rel="canonical" href="https://career.mephi3.ru/500/">
+
+<meta property="og:title" content="Ошибка 500: внутренняя ошибка сервера">
+<meta property="og:description" content="Ошибка 500: внутренняя ошибка сервера. Попробуйте перейти на главную страницу.">
+<meta property="og:url" content="https://career.mephi3.ru/500/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Центр Карьеры ГК Росатом">
+<meta property="og:locale" content="ru_RU">
+{% endblock %}
+
+{% block content%}
+<section class="500">
+    <div class="container">
+        <div class="row vh-100 align-items-center justify-content-center">
+            <div class="col-sm-12 col-md-8 col-lg-6 col-xl-4">
+                <div class="error-message text-center">
+                    <h1>500</h1>
+                    <p class="subheading">Извините, произошла внутренняя ошибка сервера. Попробуйте обновить страницу или вернуться на&nbsp;главную.</p>
+                    <a href="{% url 'index' %}" class="btn btn-primary d-md-block">Перейти на домашнюю страницу</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

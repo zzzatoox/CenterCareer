@@ -1,0 +1,12 @@
+.navbar {
+    border-bottom: 1px solid #D7DAE2;
+}
+
+.navbar-brand {
+    font-size: 16px !important;
+    font-weight: bold !important;
+}
+
+.nav-link {
+    font-size: 14px !important;
+}

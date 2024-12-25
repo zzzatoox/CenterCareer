@@ -1,0 +1,41 @@
+@media (max-width: 767.98px) {
+    .hero-title {
+        font-size: 1rem;
+    }
+}
+
+.about li {
+    font-size: 16px;
+    font-weight: 400 !important;
+    line-height: 24px;
+    color: #555A65;
+}
+
+@media (max-width: 767.98px) {
+
+    h1,
+    .about h2,
+    .team {
+        text-align: center;
+    }
+}
+
+.team ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+iframe {
+    border-radius: 10px;
+}
+
+.image-col img {
+    display: inline-block;
+    max-height: 550px;
+}
+
+.image-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

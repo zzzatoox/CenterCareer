@@ -8,5 +8,6 @@ urlpatterns = [
     path("vacancies/<int:vacancy_id>/", views.vacancy_detail, name="vacancy_detail"),
     path("events/", views.events, name="events"),
     path("events/<int:event_id>/", views.event_detail, name="event_detail"),
+    path("feedback/", views.feedback_view, name="feedback"),
     path("ckeditor5/", include("django_ckeditor_5.urls")),
 ]

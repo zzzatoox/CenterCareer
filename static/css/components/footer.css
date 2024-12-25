@@ -1,0 +1,23 @@
+.navbar-brand {
+    color: #212529 !important;
+}
+
+.navbar-brand:hover{
+    color: rgba(0,0,0,.9) !important;
+}
+
+.footer-list {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    list-style-type: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 20px !important;
+}
+
+.footer-link {
+    font-size: 14px !important;
+    line-height: 20px !important;
+    color: #555A65;
+}

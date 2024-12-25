@@ -1,0 +1,42 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer {
+    margin-top: auto;
+}
+
+.job-card {
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.job-card-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.job-card-salary {
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: semibold;
+    color: #0d6efd;
+}
+
+.job-card-text {
+    margin-top: 5px;
+}
+
+.job-card li {
+    font-size: 16px;
+    font-weight: 400 !important;
+    line-height: 24px;
+    color: #555A65;
+}

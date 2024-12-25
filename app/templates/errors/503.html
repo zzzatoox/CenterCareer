@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %} Ошибка 503 {% endblock %}
+
+{% block meta %}
+<meta name="description" content="Ошибка 503: сервис временно недоступен. Пожалуйста, попробуйте позже.">
+<meta name="keywords" content="ошибка 503, сервис недоступен, временная ошибка">
+<meta name="author" content="Центр Карьеры ГК Росатом">
+
+<link rel="canonical" href="https://career.mephi3.ru/503/">
+
+<meta property="og:title" content="Ошибка 503: сервис временно недоступен">
+<meta property="og:description" content="Ошибка 503: сервис временно недоступен. Пожалуйста, попробуйте позже.">
+<meta property="og:url" content="https://career.mephi3.ru/503/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Центр Карьеры ГК Росатом">
+<meta property="og:locale" content="ru_RU">
+{% endblock %}
+
+{% block content %}
+<section class="503">
+    <div class="container">
+        <div class="row vh-100 align-items-center justify-content-center">
+            <div class="col-sm-12 col-md-8 col-lg-6 col-xl-4">
+                <div class="error-message text-center">
+                    <h1>503</h1>
+                    <p class="subheading">Сервис временно недоступен.</p>
+                    <p>Пожалуйста, попробуйте позже.</p>
+                    <a href="{% url 'index' %}" class="btn btn-primary d-md-block">Перейти на главную</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

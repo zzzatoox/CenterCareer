@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Count, Q, Case, When, Value, IntegerField
@@ -6,6 +6,12 @@ from django.db.models import Count, Q, Case, When, Value, IntegerField
 from .models import Status, Event, Vacancy, FilterValue, City, Company
 
 from fuzzywuzzy import process
+
+from django.core.mail import send_mail
+from .forms import FeedbackForm
+
+from django.conf import settings
+from django.contrib import messages
 
 
 def vacancies(request):
@@ -200,3 +206,29 @@ def events(request):
 def event_detail(request, event_id):
     event = get_object_or_404(Event, event_id=event_id)
     return render(request, "event_detail.html", {"event": event})
+
+
+def feedback_view(request):
+    if request.method == "POST":
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data["name"]
+            message = form.cleaned_data["message"]
+            email_message = f"Имя: {name}\n\nСообщение:\n{message}"
+            try:
+                send_mail(
+                    subject="Обратная связь с сайта",
+                    message=email_message,
+                    from_email=None,
+                    recipient_list=[settings.EMAIL_HOST_USER],
+                )
+                messages.success(request, "Ваше сообщение успешно отправлено!")
+            except Exception as e:
+                print(f"Ошибка отправки письма: {e}")
+                messages.error(
+                    request,
+                    "Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте позже.",
+                )
+    else:
+        form = FeedbackForm()
+    return render(request, "feedback.html", {"form": form})
