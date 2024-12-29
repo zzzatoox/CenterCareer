@@ -97,11 +97,15 @@ WSGI_APPLICATION = "centercareer.wsgi.application"
 # }
 
 # CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-#         'LOCATION': '/var/tmp/django_cache',
+#     "default": {
+#         "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+#         "LOCATION": "F:/CenterCareer",
+#         "TIMEOUT": 7200,  # Время жизни кеша в секундах (2 часа)
+#         "OPTIONS": {"MAX_ENTRIES": 1000},
 #     }
 # }
+
+USE_X_FORWARDED_FOR = True
 
 DATABASES = {
     "default": {

@@ -213,6 +213,10 @@ def event_detail(request, event_id):
 @ratelimit(key="ip", rate="1/2h", block=False)
 def feedback_view(request):
     if request.method == "POST":
+        ip_address = request.META.get("REMOTE_ADDR")
+        x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
+        print(f"REMOTE_ADDR: {ip_address}")
+        print(f"X-Forwarded-For: {x_forwarded_for}")
         was_limited = getattr(request, "limited", False)
         if was_limited:
             messages.warning(
