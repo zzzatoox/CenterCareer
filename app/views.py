@@ -9,6 +9,8 @@ from fuzzywuzzy import process
 
 from django.core.mail import send_mail
 from .forms import FeedbackForm
+from django_ratelimit.decorators import ratelimit
+
 
 from django.conf import settings
 from django.contrib import messages
@@ -208,27 +210,40 @@ def event_detail(request, event_id):
     return render(request, "event_detail.html", {"event": event})
 
 
+@ratelimit(key="ip", rate="1/2h", block=False)
 def feedback_view(request):
     if request.method == "POST":
-        form = FeedbackForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data["name"]
-            message = form.cleaned_data["message"]
-            email_message = f"Имя: {name}\n\nСообщение:\n{message}"
-            try:
-                send_mail(
-                    subject="Обратная связь с сайта",
-                    message=email_message,
-                    from_email=None,
-                    recipient_list=[settings.EMAIL_HOST_USER],
-                )
-                messages.success(request, "Ваше сообщение успешно отправлено!")
-            except Exception as e:
-                print(f"Ошибка отправки письма: {e}")
-                messages.error(
-                    request,
-                    "Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте позже.",
-                )
+        was_limited = getattr(request, "limited", False)
+        if was_limited:
+            messages.warning(
+                request,
+                "Вы превысили лимит отправки сообщений. Пожалуйста, попробуйте позже.",
+            )
+            form = FeedbackForm(request.POST)
+            return render(request, "feedback.html", {"form": form})
+        else:
+            form = FeedbackForm(request.POST)
+            if form.is_valid():
+                name = form.cleaned_data["name"]
+                email = form.cleaned_data["email"]
+                message = form.cleaned_data["message"]
+                email_message = f"Имя: {name}\nEmail: {email}\n\nСообщение:\n{message}"
+                try:
+                    send_mail(
+                        subject="Обратная связь с сайта",
+                        message=email_message,
+                        from_email=None,
+                        recipient_list=[settings.EMAIL_HOST_USER],
+                    )
+                    messages.success(request, "Ваше сообщение успешно отправлено!")
+                except Exception as e:
+                    print(f"Ошибка отправки письма: {e}")
+                    messages.error(
+                        request,
+                        "Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте позже.",
+                    )
+            else:
+                messages.error(request, "Пожалуйста, исправьте ошибки в форме.")
     else:
         form = FeedbackForm()
     return render(request, "feedback.html", {"form": form})

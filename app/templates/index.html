@@ -305,15 +305,14 @@
                         <h2 class="accordion-header" id="flush-headingOne">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#flush-collapseOne">
-                                Будут&nbsp;ли мне платить зарплату?
+                                После окончания института есть&nbsp;ли возможность устроиться на&nbsp;работу по&nbsp;специальности?
                             </button>
                         </h2>
                         <div id="flush-collapseOne" class="accordion-collapse collapse"
                             aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
                                 <p class="subheading">
-                                    Да, работа каждого стажёра оплачивается. Зарплата зависит
-                                    от&nbsp;фактического времени работы.
+                                  Да. В&nbsp;институте создан и&nbsp;функционирует целое подразделение&nbsp;&mdash; Центр карьеры, который занимается трудоустройством выпускников. Более&nbsp;70% выпускников ТИ&nbsp;НИЯУ МИФИ устраиваются на&nbsp;ФГУП &laquo;Комбинат &laquo;Электрохимприбор&raquo;, а&nbsp;остальные на&nbsp;предприятия Свердловской области.
                                 </p>
                             </div>
                         </div>
@@ -322,16 +321,14 @@
                         <h2 class="accordion-header" id="flush-headingTwo">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#flush-collapseTwo">
-                                Сколько длится стажировка?
+                                Когда начинает принимать документы приемная комиссия в&nbsp;этом году?
                             </button>
                         </h2>
                         <div id="flush-collapseTwo" class="accordion-collapse collapse show"
                             aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
                                 <p class="subheading">
-                                    Минимально стажировка рассчитана на&nbsp;3&nbsp;месяца. Бывают программы
-                                    и&nbsp;большей продолжительности. Срок определяется из&nbsp;твоего графика
-                                    и&nbsp;специфики направления.
+                                  В&nbsp;2025 году приемная комиссия начнет свою работу 20&nbsp;июня.
                                 </p>
                             </div>
                         </div>
@@ -340,16 +337,17 @@
                         <h2 class="accordion-header" id="flush-headingThree">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#flush-collapseThree">
-                                Что будет, когда стажировка закончится?
+                                Возможно&nbsp;ли продолжить обучение в&nbsp;вашем Вузе, после получения диплома СПО?
                             </button>
                         </h2>
                         <div id="flush-collapseThree" class="accordion-collapse collapse"
                             aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
                                 <p class="subheading">
-                                    Лучшим стажёрам мы&nbsp;предлагаем заключить бессрочный
-                                    контракт&nbsp;&mdash; устроиться на&nbsp;постоянную работу в&nbsp;нашу
-                                    отрасль.
+                                  Конечно, ТИ&nbsp;НИЯУ МИФИ может предложить Вам обучение:<br/>
+&mdash;&nbsp;на&nbsp;более чем 6&nbsp;направлениях подготовки<br/>
+&mdash;&nbsp;по&nbsp;разным формам обучения (очная и&nbsp;очно-заочная(вечерняя))<br/>
+Более подробную информацию&nbsp;Вы можете получить на&nbsp;нашем сайте https://mephi3.ru/ или в&nbsp;приемной комиссии по&nbsp;телефону: 8(34342) 4-70-52
                                 </p>
                             </div>
                         </div>
@@ -358,14 +356,14 @@
                         <h2 class="accordion-header" id="flush-headingFour">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#flush-collapseFour">
-                                Что нужно уметь стажеру?
+                                Имеется отсрочка от&nbsp;армии?
                             </button>
                         </h2>
                         <div id="flush-collapseFour" class="accordion-collapse collapse"
                             aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
                                 <p class="subheading">
-                                    Требования зависят от&nbsp;направления.
+                                  Все специальности и&nbsp;направления подготовки ТИ&nbsp;НИЯУ МИФИ аккредитованы. Отсрочка от&nbsp;армии предоставляется если она используется впервые.
                                 </p>
                             </div>
                         </div>
@@ -374,5 +372,28 @@
             </div>
         </div>
     </div>
+</section>
+
+<div class="d-flex justify-content-center my-5">
+  <div style="width: 400px; height: 2px; background: linear-gradient(to right, transparent, #0d6efd, transparent); opacity: 0.7;"></div>
+</div>
+
+<section class="feedback py-5 bg-light">
+  <div class="container text-center">
+      <div class="row justify-content-center">
+          <div class="col-md-8">
+              <h2 class="display-5 mb-3">Есть вопросы или предложения?</h2>
+              <p class="lead mb-4">
+                Поделитесь своими замечаниями и&nbsp;предложениями по&nbsp;удобству использования сайта. Мы&nbsp;всегда готовы вас выслушать!
+              </p>
+              <a href="{% url 'feedback' %}" class="btn btn-primary btn-lg">
+                Перейти к&nbsp;форме обратной связи
+              </a>
+              <p class="text-muted small mt-3">
+                По&nbsp;другим вопросам пишите на&nbsp;<a href="mailto:personaledu@ehp-atom.ru">personaledu@ehp-atom.ru</a>.
+              </p>
+          </div>
+      </div>
+  </div>
 </section>
 {% endblock %}

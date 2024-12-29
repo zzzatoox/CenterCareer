@@ -10,4 +10,5 @@ urlpatterns = [
     path("events/<int:event_id>/", views.event_detail, name="event_detail"),
     path("feedback/", views.feedback_view, name="feedback"),
     path("ckeditor5/", include("django_ckeditor_5.urls")),
+    path("captcha/", include("captcha.urls")),
 ]

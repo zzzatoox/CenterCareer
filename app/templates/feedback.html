@@ -10,7 +10,7 @@
 {% block styles %}
 {% endblock %}
 
-{% block content%}
+{% block content %}
 <div class="container my-3 my-sm-5">
     {% if messages %}
         {% for message in messages %}
@@ -21,28 +21,75 @@
         {% endfor %}
     {% endif %}
 
-    <h1 class="display-4">Обратная связь</h1>
-    <form method="post" class="mt-4">
-        {% csrf_token %}
-        <div class="mb-3">
-            <label for="{{ form.name.id_for_label }}" class="form-label subheading">Ваше имя</label>
-            {{ form.name }}
-            {% if form.name.errors %}
-                <div class="invalid-feedback">
-                    {{ form.name.errors|join:", " }}
-                </div>
-            {% endif %}
+    <h1 class="display-4 text-center">Обратная связь</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 text-center">
+            <p class="lead mt-3">
+                Пожалуйста, используйте форму ниже только для замечаний и&nbsp;предложений по&nbsp;удобству использования сайта.
+            </p>
+            <p class="lead">
+                По&nbsp;всем остальным вопросам пишите на&nbsp;почту:<br>
+<a href="mailto:personaledu@ehp-atom.ru" class="fw-bold">personaledu@ehp-atom.ru</a>.
+            </p>
+            <p class="text-muted small">
+                Обратите внимание: вы&nbsp;можете отправлять сообщения не&nbsp;чаще одного раза в&nbsp;2&nbsp;часа. Это необходимо для защиты от&nbsp;спама.
+            </p>
         </div>
-        <div class="mb-3">
-            <label for="{{ form.message.id_for_label }}" class="form-label subheading">Ваше сообщение</label>
-            {{ form.message }}
-            {% if form.message.errors %}
-                <div class="invalid-feedback">
-                    {{ form.message.errors|join:", " }}
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <form method="post" class="mt-4">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="{{ form.name.id_for_label }}" class="form-label">
+                        Ваше имя <span class="text-danger">*</span>
+                    </label>
+                    {{ form.name }}
+                    {% if form.name.errors %}
+                        <div class="alert alert-danger mt-2">
+                            {{ form.name.errors|join:", " }}
+                        </div>
+                    {% endif %}
                 </div>
-            {% endif %}
+                <div class="mb-3">
+                    <label for="{{ form.email.id_for_label }}" class="form-label">
+                        Ваш email <span class="text-danger">*</span>
+                    </label>
+                    {{ form.email }}
+                    {% if form.email.errors %}
+                        <div class="alert alert-danger mt-2">
+                            {{ form.email.errors|join:", " }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.message.id_for_label }}" class="form-label">
+                        Ваше сообщение <span class="text-danger">*</span>
+                    </label>
+                    {{ form.message }}
+                    {% if form.message.errors %}
+                        <div class="alert alert-danger mt-2">
+                            {{ form.message.errors|join:", " }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.captcha.id_for_label }}" class="form-label">Капча</label>
+                    {{ form.captcha }}
+                    {% if form.captcha.errors %}
+                        <div class="alert alert-danger mt-2">
+                            {{ form.captcha.errors|join:", " }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="text-center">
+                    <p class="text-muted small mb-3">
+                        Поля, отмеченные <span class="text-danger">*</span>, обязательны для заполнения.
+                    </p>
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </div>
+            </form>
         </div>
-        <button type="submit" class="btn btn-primary">Отправить</button>
-    </form>
+    </div>
 </div>
 {% endblock %}

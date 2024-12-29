@@ -74,7 +74,7 @@
                     </div>
                 </div>
                 <div class="col-md">
-                    <ul class="footer-list ms-auto d-flex flex-column flex-md-row">
+                    <ul class="footer-list ms-auto d-flex flex-column flex-md-row justify-content-md-end justify-content-center flex-wrap gap-3">
                         <li class="footer-item">
                             <a href="{% url 'vacancies' %}" class="footer-link">Вакансии</a>
                         </li>
@@ -88,7 +88,12 @@
                             <a href="{% url 'events' %}" class="footer-link">Карьерные мероприятия</a>
                         </li>
                         <li class="footer-item">
-                            <a href="https://vk.com/personal_ehp" target="_blank" class="nav-link">
+                            <a class="footer-link" href="{% url 'feedback' %}">
+                                Обратная связь
+                            </a>
+                        </li>
+                        <li class="footer-item">
+                            <a href="https://vk.com/personal_ehp" target="_blank" class="nav-link" style="padding-inline: 0;">
                                 <i class="fa-brands fa-vk fa-2xl" style="color: #0d6efd;"></i>
                             </a>
                         </li>

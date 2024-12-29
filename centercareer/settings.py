@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "django_ckeditor_5",
     "django.contrib.humanize",
     "django.contrib.sitemaps",
+    "captcha",
 ]
 
 MIDDLEWARE = [
@@ -213,8 +214,8 @@ CKEDITOR_5_FILE_UPLOAD_PERMISSION = (
 CSRF_TRUSTED_ORIGINS = ["https://career.mephi3.ru"]
 
 # smtp
-# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 EMAIL_HOST = "smtp.yandex.ru"
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
@@ -231,3 +232,7 @@ MESSAGE_TAGS = {
     message_constants.WARNING: "warning",
     message_constants.ERROR: "danger",
 }
+
+CAPTCHA_FONT_SIZE = 40  # Размер шрифта
+CAPTCHA_LENGTH = 4  # Количество символов
+CAPTCHA_TIMEOUT = 5  # Время жизни капчи в минутах
