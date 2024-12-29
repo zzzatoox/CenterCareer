@@ -63,6 +63,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     # Регулярное обновление статусов мероприятий
     "app.middleware.UpdateEventStatusesMiddleware",
+    "app.middleware.XForwardedForMiddleware",
 ]
 
 ROOT_URLCONF = "centercareer.urls"
@@ -106,7 +107,6 @@ WSGI_APPLICATION = "centercareer.wsgi.application"
 # }
 
 USE_X_FORWARDED_FOR = True
-RATELIMIT_IP_META_KEY = "HTTP_X_FORWARDED_FOR"
 
 DATABASES = {
     "default": {
