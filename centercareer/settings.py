@@ -106,6 +106,7 @@ WSGI_APPLICATION = "centercareer.wsgi.application"
 # }
 
 USE_X_FORWARDED_FOR = True
+RATELIMIT_IP_META_KEY = "HTTP_X_FORWARDED_FOR"
 
 DATABASES = {
     "default": {
