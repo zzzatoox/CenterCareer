@@ -210,44 +210,73 @@ def event_detail(request, event_id):
     return render(request, "event_detail.html", {"event": event})
 
 
-@ratelimit(key="ip", rate="1/2h", block=False)
+# @ratelimit(key="ip", rate="1/2h", block=False)
+# def feedback_view(request):
+#     if request.method == "POST":
+#         ip_address = request.META.get("REMOTE_ADDR")
+#         x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
+#         print(f"REMOTE_ADDR: {ip_address}")
+#         print(f"X-Forwarded-For: {x_forwarded_for}")
+#         was_limited = getattr(request, "limited", False)
+#         if was_limited:
+#             messages.warning(
+#                 request,
+#                 "Вы превысили лимит отправки сообщений. Пожалуйста, попробуйте позже.",
+#             )
+#             form = FeedbackForm(request.POST)
+#             return render(request, "feedback.html", {"form": form})
+#         else:
+#             form = FeedbackForm(request.POST)
+#             if form.is_valid():
+#                 name = form.cleaned_data["name"]
+#                 email = form.cleaned_data["email"]
+#                 message = form.cleaned_data["message"]
+#                 email_message = f"Имя: {name}\nEmail: {email}\n\nСообщение:\n{message}"
+#                 try:
+#                     send_mail(
+#                         subject="Обратная связь с сайта",
+#                         message=email_message,
+#                         from_email=None,
+#                         recipient_list=[settings.EMAIL_HOST_USER],
+#                     )
+#                     messages.success(request, "Ваше сообщение успешно отправлено!")
+#                 except Exception as e:
+#                     print(f"Ошибка отправки письма: {e}")
+#                     messages.error(
+#                         request,
+#                         "Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте позже.",
+#                     )
+#             else:
+#                 messages.error(request, "Пожалуйста, исправьте ошибки в форме.")
+#     else:
+#         form = FeedbackForm()
+#     return render(request, "feedback.html", {"form": form})
+
+
 def feedback_view(request):
     if request.method == "POST":
-        ip_address = request.META.get("REMOTE_ADDR")
-        x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
-        print(f"REMOTE_ADDR: {ip_address}")
-        print(f"X-Forwarded-For: {x_forwarded_for}")
-        was_limited = getattr(request, "limited", False)
-        if was_limited:
-            messages.warning(
-                request,
-                "Вы превысили лимит отправки сообщений. Пожалуйста, попробуйте позже.",
-            )
-            form = FeedbackForm(request.POST)
-            return render(request, "feedback.html", {"form": form})
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data["name"]
+            email = form.cleaned_data["email"]
+            message = form.cleaned_data["message"]
+            email_message = f"Имя: {name}\nEmail: {email}\n\nСообщение:\n{message}"
+            try:
+                send_mail(
+                    subject="Обратная связь с сайта",
+                    message=email_message,
+                    from_email=None,
+                    recipient_list=[settings.EMAIL_HOST_USER],
+                )
+                messages.success(request, "Ваше сообщение успешно отправлено!")
+            except Exception as e:
+                print(f"Ошибка отправки письма: {e}")
+                messages.error(
+                    request,
+                    "Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте позже.",
+                )
         else:
-            form = FeedbackForm(request.POST)
-            if form.is_valid():
-                name = form.cleaned_data["name"]
-                email = form.cleaned_data["email"]
-                message = form.cleaned_data["message"]
-                email_message = f"Имя: {name}\nEmail: {email}\n\nСообщение:\n{message}"
-                try:
-                    send_mail(
-                        subject="Обратная связь с сайта",
-                        message=email_message,
-                        from_email=None,
-                        recipient_list=[settings.EMAIL_HOST_USER],
-                    )
-                    messages.success(request, "Ваше сообщение успешно отправлено!")
-                except Exception as e:
-                    print(f"Ошибка отправки письма: {e}")
-                    messages.error(
-                        request,
-                        "Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте позже.",
-                    )
-            else:
-                messages.error(request, "Пожалуйста, исправьте ошибки в форме.")
+            messages.error(request, "Пожалуйста, исправьте ошибки в форме.")
     else:
         form = FeedbackForm()
     return render(request, "feedback.html", {"form": form})
