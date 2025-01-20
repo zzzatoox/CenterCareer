@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Центр Карьеры Госкорпорации Росатом</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+    <style>
+        .btn-hover-effect {
+            background: linear-gradient(135deg, #0d6efd, #00b4ff);
+            border: none;
+        }
+        .btn-hover-effect:hover {
+            background: linear-gradient(135deg, #0a58ca, #0099cc);
+        }
+        .btn-outline-gradient {
+            border: 3px solid transparent;
+            background: transparent;
+            color: #0d6efd;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .btn-outline-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 3px solid transparent;
+            border-radius: inherit;
+            background: linear-gradient(135deg, #0d6efd, #00b4ff) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            z-index: -1;
+        }
+        .btn-outline-gradient:hover::before {
+            background: linear-gradient(135deg, #0a58ca, #0099cc) border-box;
+        }
+        .btn-outline-gradient:hover {
+            color: #0a58ca;
+        }
+
+        .btn-white-bg {
+            background-color: white;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    {% include 'background_animation.html' %}
+
+    <main class="content">
+        <section class="d-flex justify-content-center align-items-center vh-100 position-relative">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 text-center mb-5">
+                        <h1 class="display-3 fw-bold">Центр Карьеры Госкорпорации Росатом</h1>
+                    </div>
+                    <div class="col-md-6 text-center mb-4">
+                        <a href="{% url 'tv_vacancies' %}" class="btn btn-lg btn-block p-5 fs-1 d-flex align-items-center justify-content-center text-white btn-hover-effect shadow-none" 
+                           style="height: 300px;">
+                            <i class="bi bi-briefcase me-3"></i>Вакансии
+                        </a>
+                    </div>
+                    <div class="col-md-6 text-center mb-4">
+                        <a href="{% url 'tv_events' %}" class="btn btn-lg btn-block p-5 fs-1 d-flex align-items-center justify-content-center btn-outline-gradient btn-white-bg shadow-none" 
+                           style="height: 300px;">
+                            <i class="bi bi-calendar-event me-3"></i>Карьерные мероприятия
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

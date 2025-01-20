@@ -280,3 +280,70 @@ def feedback_view(request):
     else:
         form = FeedbackForm()
     return render(request, "feedback.html", {"form": form})
+
+
+def tv(request):
+    return render(request, "tv/tv.html")
+
+
+def tv_vacancies(request):
+    # Получаем все вакансии
+    vacancies = Vacancy.objects.filter(is_relevant=True).prefetch_related(
+        "filters__filter_value"
+    )
+
+    # Пагинация
+    paginator = Paginator(vacancies, 10)  # Показывать по 10 вакансий на странице
+    page = request.GET.get("page")
+
+    try:
+        vacancies = paginator.page(page)
+    except PageNotAnInteger:
+        vacancies = paginator.page(1)
+    except EmptyPage:
+        vacancies = paginator.page(paginator.num_pages)
+
+    return render(
+        request,
+        "tv/tv_vacancies.html",
+        {
+            "vacancies": vacancies,
+        },
+    )
+
+
+def tv_vacancy_detail(request, vacancy_id):
+    vacancy = get_object_or_404(Vacancy, vacancy_id=vacancy_id)
+    return render(request, "tv/tv_vacancy_detail.html", {"vacancy": vacancy})
+
+
+def tv_events(request):
+    try:
+        # Получаем статусы "Запланировано", "Активно", "Отменено"
+        planned_status = Status.objects.filter(title__iexact="Запланировано").first()
+        active_status = Status.objects.filter(title__iexact="Активно").first()
+
+        # Получаем мероприятия с нужными статусами
+        events = Event.objects.filter(
+            status__in=[planned_status, active_status]  # canceled_status
+        ).order_by("event_date")
+
+        context = {
+            "events": events,
+        }
+
+    except ObjectDoesNotExist as e:
+        # Обработка случая, если статусы не найдены
+        context = {"events": [], "error_message": "Статусы мероприятий не найдены."}
+    except Exception as e:
+        # Обработка других ошибок
+        context = {
+            "events": [],
+            "error_message": "Произошла ошибка при загрузке мероприятий.",
+        }
+    return render(request, "tv/tv_events.html", context)
+
+
+def tv_event_detail(request, event_id):
+    event = get_object_or_404(Event, event_id=event_id)
+    return render(request, "tv/tv_event_detail.html", {"event": event})

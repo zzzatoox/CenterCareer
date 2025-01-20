@@ -1,0 +1,50 @@
+<style>
+    .background-animation {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+    }
+
+    .floating-icon {
+        position: absolute;
+        color: rgba(13, 110, 253, 0.3);
+        font-size: 24px;
+        animation: float 10s infinite ease-in-out;
+    }
+
+    .floating-shape {
+        position: absolute;
+        background: rgba(13, 110, 253, 0.2);
+        animation: float 8s infinite ease-in-out;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(0) translateX(0) rotate(0deg);
+        }
+        50% {
+            transform: translateY(-20px) translateX(20px) rotate(180deg);
+        }
+        100% {
+            transform: translateY(0) translateX(0) rotate(360deg);
+        }
+    }
+</style>
+
+<div class="background-animation">
+    <i class="bi bi-briefcase floating-icon" style="top: 10%; left: 5%;"></i>
+    <i class="bi bi-calendar-event floating-icon" style="top: 10%; left: 80%;"></i>
+    <i class="bi bi-building floating-icon" style="top: 90%; left: 60%;"></i>
+    <i class="bi bi-graph-up floating-icon" style="top: 85%; left: 15%;"></i>
+    <i class="bi bi-lightbulb floating-icon" style="top: 80%; left: 45%;"></i>
+    <i class="bi bi-gear floating-icon" style="top: 10%; left: 40%;"></i>
+    <i class="bi bi-award floating-icon" style="top: 90%; left: 85%;"></i>
+
+    <div class="floating-shape" style="width: 30px; height: 30px; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); top: 15%; left: 60%;"></div>
+    <div class="floating-shape" style="width: 20px; height: 20px; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); top: 50%; left: 0%;"></div>
+    <div class="floating-shape" style="width: 30px; height: 30px; border-radius: 50%; top: 60%; left: 95%;"></div>
+</div>
