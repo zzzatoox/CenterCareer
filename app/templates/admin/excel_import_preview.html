@@ -1,0 +1,51 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<div class="content p-4">
+    <h1 class="mb-4">Предпросмотр данных для импорта</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Название</th>
+                    <th>Описание</th>
+                    <th>Минимальная зарплата</th>
+                    <th>Максимальная зарплата</th>
+                    <th>Актуальность</th>
+                    <th>Компания</th>
+                    <th>Опыт работы</th>
+                    <th>Тип занятости</th>
+                    <th>Режим работы</th>
+                    <th>Подходит для инвалидов</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in preview_data %}
+                    <tr>
+                        <td>{{ row.title }}</td>
+                        <td>{{ row.description|default:"—" }}</td>
+                        <td>{{ row.min_salary|default:"—" }}</td>
+                        <td>{{ row.max_salary|default:"—" }}</td>
+                        <td>{{ row.is_relevant|yesno:"Да,Нет" }}</td>
+                        <td>{{ row.company }}</td>
+                        <td>{{ row.experience|default:"—" }}</td>
+                        <td>{{ row.employment_type|default:"—" }}</td>
+                        <td>{{ row.work_schedule|default:"—" }}</td>
+                        <td>{{ row.disability_friendly|default:"—" }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <form method="post" action="{% url 'confirm_import' %}" class="mt-4">
+        {% csrf_token %}
+        <input type="hidden" name="confirm" value="1">
+        <button type="submit" class="btn btn-success">
+            <i class="fas fa-check"></i> Подтвердить импорт
+        </button>
+        <a href="{% url 'import_excel' %}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Назад
+        </a>
+    </form>
+</div>
+{% endblock %}

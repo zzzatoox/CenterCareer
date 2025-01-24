@@ -1,5 +1,6 @@
 from django.urls import path, include
 from . import views
+from .admin import VacancyAdmin
 
 urlpatterns = [
     path("", views.index, name="index"),
@@ -16,6 +17,11 @@ urlpatterns = [
     path("tv-vacancies/<int:vacancy_id>/", views.tv_vacancy_detail, name="tv_vacancy_detail"),
     path("tv-events/", views.tv_events, name="tv_events"),
     path("tv-events/<int:event_id>/", views.tv_event_detail, name="tv_event_detail"),
+
+
+    # admin
+    path('admin/app/vacancy/import-excel/', VacancyAdmin.import_excel, name='import_excel'),
+    path('admin/app/vacancy/confirm-import/', VacancyAdmin.confirm_import, name='confirm_import'),
 
     path("ckeditor5/", include("django_ckeditor_5.urls")),
     path("captcha/", include("captcha.urls")),
