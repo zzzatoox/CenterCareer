@@ -30,8 +30,8 @@ def vacancies(request):
         closest_matches = process.extract(search, all_titles, limit=10)
 
         matched_titles = [
-            match[0] for match in closest_matches if match[1] > 70
-        ]  # Порог совпадения 70%
+            match[0] for match in closest_matches if match[1] > 50
+        ]  # Порог совпадения 50%
         vacancies = vacancies.filter(title__in=matched_titles)
 
     # Фильтрация по городу
