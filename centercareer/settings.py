@@ -38,6 +38,7 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    # "storages",
     "jazzmin",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -51,6 +52,9 @@ INSTALLED_APPS = [
     "django.contrib.sitemaps",
     "captcha",
 ]
+
+# DEFAULT_FILE_STORAGE = "storages.backends.filesystem.FileSystemStorage"
+# FILE_UPLOAD_PERMISSIONS = 0o644
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -158,15 +162,23 @@ DATETIME_FORMAT = "d E Y H:i"
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATICFILES_DIRS = [
-    BASE_DIR / "app/static",
-]
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# STATICFILES_DIRS = [
+#     BASE_DIR / "app/static",
+# ]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+if DEBUG:
+    # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+    STATICFILES_DIRS = [
+        BASE_DIR / "app/static",
+    ]
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -186,6 +198,7 @@ customColorPalette = [
 
 # CKEDITOR_5_CUSTOM_CSS = "path_to.css"  # optional
 # CKEDITOR_5_FILE_STORAGE = "path_to_storage.CustomStorage"  # optional
+# CKEDITOR_5_FILE_STORAGE = "storages.backends.filesystem.FileSystemStorage"
 
 CKEDITOR_5_CONFIGS = {
     "default": {
