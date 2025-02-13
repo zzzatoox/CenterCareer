@@ -457,6 +457,8 @@ class EventAdmin(admin.ModelAdmin):
     list_display = (
         "title",
         "event_date",
+        "end_date",
+        "event_month",
         "start_time",
         "end_time",
         "location",
@@ -483,4 +485,6 @@ class EventAdmin(admin.ModelAdmin):
             ).first()
             if default_status:
                 obj.status = default_status
+
+        obj.full_clean()
         super().save_model(request, obj, form, change)

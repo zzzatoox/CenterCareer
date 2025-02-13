@@ -10,7 +10,6 @@ class UpdateEventStatusesMiddleware:
     def __call__(self, request):
         # Вызываем функцию обновления статусов
         self.update_event_statuses()
-
         # Продолжаем обработку запроса
         response = self.get_response(request)
         return response
@@ -24,37 +23,67 @@ class UpdateEventStatusesMiddleware:
         planned_status = Status.objects.filter(title__iexact="Запланировано").first()
         active_status = Status.objects.filter(title__iexact="Активно").first()
         completed_status = Status.objects.filter(title__iexact="Завершено").first()
-        canceled_status = Status.objects.filter(title__iexact="Отменено").first()
 
-        if not all([planned_status, active_status, completed_status, canceled_status]):
+        if not all([planned_status, active_status, completed_status]):
             return
 
-        # Обновляем статусы мероприятий
-        # 1. Переводим "Запланировано" в "Завершено" или "Активно"
-        Event.objects.filter(status=planned_status, event_date__lt=current_date).update(
-            status=completed_status
-        )
+        # 1. Мероприятия, которые завершились
+        Event.objects.filter(
+            status__in=[planned_status, active_status],
+            event_date__lt=current_date,
+        ).update(status=completed_status)
 
         Event.objects.filter(
-            status=planned_status, event_date=current_date, start_time__lte=current_time
+            status=active_status,
+            event_date=current_date,
+            end_time__lt=current_time,
+        ).update(status=completed_status)
+
+        # 2. Мероприятия, которые активны сейчас
+        Event.objects.filter(
+            status=planned_status,
+            event_date=current_date,
+            start_time__lte=current_time,
         ).update(status=active_status)
 
-        # 2. Переводим "Активно" в "Завершено"
         Event.objects.filter(
-            Q(status=active_status)
-            & (
-                Q(event_date__lt=current_date)
-                | Q(event_date=current_date, end_time__lt=current_time)
+            status=planned_status,
+            event_date__lte=current_date,
+            end_date__gte=current_date,
+        ).update(status=active_status)
+
+        # 3. Мероприятия, которые еще не начались
+        Event.objects.filter(
+            status=planned_status,
+            event_date__gt=current_date,
+        ).update(status=planned_status)
+
+        # 4. Обработка мероприятий с event_month
+        Event.objects.filter(
+            status__in=[planned_status, active_status],
+            event_month__isnull=False,
+        ).filter(
+            Q(event_month__year__lt=datetime.now().year)
+            | Q(
+                event_month__year=datetime.now().year,
+                event_month__month__lt=datetime.now().month,
             )
         ).update(status=completed_status)
 
+        Event.objects.filter(
+            status=planned_status,
+            event_month__year=datetime.now().year,
+            event_month__month=datetime.now().month,
+            event_date__lte=current_date,
+        ).update(status=active_status)
 
-# class XForwardedForMiddleware:
-#     def __init__(self, get_response):
-#         self.get_response = get_response
+        Event.objects.filter(
+            status=planned_status,
+            event_month__year__gt=datetime.now().year,
+        ).update(status=planned_status)
 
-#     def __call__(self, request):
-#         x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
-#         if x_forwarded_for:
-#             request.META["REMOTE_ADDR"] = x_forwarded_for.split(",")[0].strip()
-#         return self.get_response(request)
+        Event.objects.filter(
+            status=planned_status,
+            event_month__year=datetime.now().year,
+            event_month__month__gt=datetime.now().month,
+        ).update(status=planned_status)

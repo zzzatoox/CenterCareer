@@ -58,8 +58,17 @@
                     <div class="card-body p-4">
                         <div class="text-center">
                             <h5 class="fw-bolder">{{ event.title|truncatewords:5 }}</h5>
-                            <p class="text-muted">{{ event.event_date }}</p>
-                            <p class="text-muted">{{ event.start_time }} &mdash; {{ event.end_time }}</p>
+                            {% if event.event_date %}
+                                <p class="text-muted">{{ event.event_date }}</p>
+                                {% if event.end_date %}
+                                    <p class="text-muted">по {{ event.end_date }}</p>
+                                {% endif %}
+                            {% else %}
+                                <p class="text-muted">{{ event.event_month|date:"F Y" }}</p>
+                            {% endif %}
+                            {% if event.start_time and event.end_time %}
+                                <p class="text-muted">{{ event.start_time }} &mdash; {{ event.end_time }}</p>
+                            {% endif %}
                             <p class="subheading">{{ event.description|striptags|truncatewords:10 }}</p>
                         </div>
                     </div>

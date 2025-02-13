@@ -1,5 +1,6 @@
 from django.db import models
 from django_ckeditor_5.fields import CKEditor5Field
+from django.core.exceptions import ValidationError
 
 
 class City(models.Model):
@@ -171,9 +172,17 @@ class Event(models.Model):
         upload_to="events/", blank=True, null=True, verbose_name="Фото"
     )
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
-    event_date = models.DateField(verbose_name="Дата мероприятия")
-    start_time = models.TimeField(verbose_name="Время начала")
-    end_time = models.TimeField(verbose_name="Время окончания")
+    event_date = models.DateField(
+        blank=True, null=True, verbose_name="Дата мероприятия"
+    )
+    end_date = models.DateField(
+        blank=True, null=True, verbose_name="Дата окончания мероприятия"
+    )
+    event_month = models.DateField(
+        blank=True, null=True, verbose_name="Месяц мероприятия"
+    )
+    start_time = models.TimeField(blank=True, null=True, verbose_name="Время начала")
+    end_time = models.TimeField(blank=True, null=True, verbose_name="Время окончания")
     location = models.ForeignKey(
         Location,
         on_delete=models.CASCADE,
@@ -203,6 +212,39 @@ class Event(models.Model):
         verbose_name = "Мероприятие"
         verbose_name_plural = "Мероприятия"
         ordering = ["event_date"]
+
+    def clean(self):
+        super().clean()
+
+        # Проверка для event_date и end_date
+        if self.event_date and self.end_date:
+            if self.event_date > self.end_date:
+                raise ValidationError(
+                    {"end_date": "Дата окончания не может быть раньше даты начала."}
+                )
+
+        # Проверка для start_time и end_time (только для однодневных мероприятий)
+        if self.start_time and self.end_time:
+            if (self.event_date and not self.end_date) or (
+                self.event_date == self.end_date
+            ):
+                if self.start_time > self.end_time:
+                    raise ValidationError(
+                        {
+                            "end_time": "Время окончания не может быть раньше времени начала."
+                        }
+                    )
+        # Проверка для event_month
+        if self.event_month and self.event_date:
+            if (
+                self.event_month.month != self.event_date.month
+                or self.event_month.year != self.event_date.year
+            ):
+                raise ValidationError(
+                    {
+                        "event_month": "Месяц мероприятия должен соответствовать дате начала."
+                    }
+                )
 
     def __str__(self):
         return self.title
