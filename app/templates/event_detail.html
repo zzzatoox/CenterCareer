@@ -34,10 +34,10 @@
         <div class="row d-flex align-items-center justify-content-center">
             <div class="image-col text-center">
                 {% if event.photo %}
-                <img class="img-fluid rounded" width="700" height="500" src="{{ event.photo.url }}"
+                <img class="img-fluid rounded" style="width: 700px; object-fit: cover;" src="{{ event.photo.url }}"
                     alt="{{ event.title }}" />
                 {% else %}
-                <img class="img-fluid rounded" width="700" height="500" src="{% static 'images/event-detail.png' %}"
+                <img class="img-fluid rounded" style="width: 700px; object-fit: cover;" src="{% static 'images/event-detail.png' %}"
                     alt="{{ event.title }}" />
                 {% endif %}
             </div>

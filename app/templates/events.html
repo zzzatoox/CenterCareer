@@ -50,10 +50,9 @@
                     {% endif %}
 
                     {% if event.photo %}
-                    <img src="{{ event.photo.url }}" alt="{{ event.title }}" class="card-img-top" width="300"
-                        height="200">
+                    <img src="{{ event.photo.url }}" alt="{{ event.title }}" class="card-img-top" style="width: 100%; object-fit: cover;">
                     {% else %}
-                    <img class="card-img-top" src="{% static 'images/events.png' %}" width="300" height="200" />
+                    <img class="card-img-top" src="{% static 'images/events.png' %}" style="width: 100%; object-fit: cover;"/>
                     {% endif %}
                     <div class="card-body p-4">
                         <div class="text-center">
